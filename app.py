@@ -214,7 +214,10 @@ if analyze_button:
                 "1. Open a terminal in the project directory\n"
                 "2. Run: `python api.py`\n"
                 "3. Wait for the message: '✓ API ready to serve requests'\n"
-                "4. Then refresh this page"
+                "4. Then refresh this page\n\n"
+                "**Required model files:**\n"
+                "- `best_model_svm_glove_*.pkl` (GloVe) OR\n"
+                "- `best_model_svm_tfidf_*.pkl` (TF-IDF)"
             )
         else:
             # Show loading state
@@ -287,7 +290,9 @@ if analyze_button:
                         "**Troubleshooting:**\n"
                         "1. Is the API server running? (Check the terminal)\n"
                         "2. Try restarting the API: `python api.py`\n"
-                        "3. Make sure the model file exists: `best_model_svm_glove_*.pkl`"
+                        "3. Make sure a model file exists:\n"
+                        "   - `best_model_svm_glove_*.pkl` (GloVe) OR\n"
+                        "   - `best_model_svm_tfidf_*.pkl` (TF-IDF)"
                     )
                 elif "empty" in error_msg.lower():
                     st.info("Please enter some text to analyze")
@@ -303,13 +308,19 @@ with st.sidebar:
     st.markdown("""
     **Sentiment Analyzer** powered by:
     - 🤖 SVM (Support Vector Machine)
-    - 📝 GloVe 100D Embeddings
+    - 📝 Text Representation: GloVe 100D or TF-IDF
     - 🎯 Multi-class Classification (3 classes)
+    
+    **Supported Models:**
+    - GloVe 100-dimensional embeddings
+    - TF-IDF (1000 features)
     
     **Classes:**
     - Positive 😊
     - Neutral 😐
     - Negative 😞
+    
+    *The API automatically loads the latest model available*
     """)
     
     st.divider()
